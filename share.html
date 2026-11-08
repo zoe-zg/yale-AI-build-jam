@@ -122,8 +122,8 @@ kbd{font:600 13px Inter,system-ui,sans-serif;padding:2px 8px;border:1px solid va
 
 footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
 .theme{position:fixed;right:16px;bottom:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow)}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:14px;font-weight:500;transition:transform .25s;pointer-events:none}
-.toast.show{transform:translateX(-50%) translateY(0)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:14px;font-weight:500;opacity:0;transition:transform .25s,opacity .25s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 </style>
 </head>
 <body>
@@ -131,7 +131,7 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
 
 <div class="progress" aria-label="Your progress">
   <div class="wrap">
-    <strong id="pcount">0 / 6 done</strong>
+    <strong id="pcount">0 / 5 done</strong>
     <div class="track"><div class="fill" id="pfill"></div></div>
     <nav>
       <a href="#prep">Prep</a><a href="#repo">Repo</a><a href="#demo">Demo</a><a href="#submit">Submit</a>
@@ -143,7 +143,7 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
 <header>
   <div class="eyebrow">AI Build Jam · GDG on Campus Yale × Yale Computer Society</div>
   <h1>Share what you built</h1>
-  <p class="lead">Get your project on the Coding Jam showcase in about five minutes. Half-finished is welcome. Tick the boxes as you go — your progress is saved in this browser.</p>
+  <p class="lead">Ship (publish) your project on the Coding Jam showcase in about 5–10 minutes. If you can't finish in one sitting, use the checklist at the end to pick up where you left off (your progress is saved in this browser).</p>
   <a class="btn" href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">Open the jam page →</a>
 </header>
 
@@ -154,48 +154,33 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
   <div class="grid2">
     <div class="card need">
       <h3>Public repo URL <span class="tag req">Required</span></h3>
-      <p>A public GitHub repo with your code. <a href="#repo">How to get one ↓</a></p>
+      <p>A public GitHub repo. <a href="#repo">How to get one ↓</a></p>
     </div>
     <div class="card need">
       <h3>Live demo URL <span class="tag opt">Optional</span></h3>
       <p>A link anyone can click to try your build. <a href="#demo">How to get one ↓</a></p>
     </div>
   </div>
-  <p style="margin:12px 0 0;color:var(--ink-2);font-size:15px">You'll also need a <strong>screenshot</strong> of your app (PNG, JPG, WebP or GIF, up to 8 MB) and a Google account to sign in.</p>
+  <p style="margin:12px 0 0;color:var(--ink-2);font-size:15px">You'll also need a <strong>screenshot</strong> of your build (up to 8 MB). You can sign in with your Yale account or your personal Google account.</p>
 </section>
 
 <!-- 2. REPO -->
 <section id="repo">
   <h2><span class="num">2</span>Get your GitHub repo URL</h2>
-  <p class="sub">Create a public repo, put your code in it, and copy the link.</p>
+  <p class="sub">Create a public repo, and copy the link.</p>
   <div class="card">
     <ol class="steps">
       <li>Log in to <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>.</li>
       <li>Give the repo a name, keep it <strong>Public</strong> (the default settings are fine), and click <kbd>Create repository</kbd>.</li>
-      <li>
-        Put your code in it:
-        <div class="tabs" role="tablist" data-group="repo" style="margin-top:10px">
-          <button role="tab" aria-selected="true" data-tab="repo-ais">AI Studio</button>
-          <button role="tab" aria-selected="false" data-tab="repo-ag">Antigravity</button>
-        </div>
-        <div class="panel" id="repo-ais">
-          In Build mode, use the <strong>GitHub</strong> button in the top right to save your app to the repo. If you don't see it, use <strong>Download</strong> to get a .zip, unzip it, then on your empty repo page click <em>uploading an existing file</em> and drag the files in.
-        </div>
-        <div class="panel" id="repo-ag" hidden>
-          Ask your agent to do it for you. Paste this, with your repo link:
-          <div class="copy"><span>Push this project to my GitHub repo at https://github.com/YOUR-NAME/YOUR-REPO. Make sure .env files and API keys are in .gitignore and not committed.</span><button data-copy>Copy</button></div>
-        </div>
-      </li>
       <li>Copy the repo link from your browser's address bar. It looks like <code>https://github.com/your-name/your-repo</code>.</li>
     </ol>
-    <div class="callout warn"><span class="ic">!</span><p>Before you share, check the repo has <strong>no API keys</strong> in it. Submissions go public immediately.</p></div>
   </div>
 </section>
 
 <!-- 3. DEMO -->
 <section id="demo">
   <h2><span class="num">3</span>Get a live demo URL <span class="tag enc">Encouraged</span></h2>
-  <p class="sub">Optional, but your showcase card gets a <strong>Live demo</strong> button so people can try your build. Never make one up — use a real link or leave it blank.</p>
+  <p class="sub">Optional, but your showcase card gets a <strong>Live demo</strong> button so people can try your build. Follow the steps below to get your demo URL.</p>
   <div class="card">
     <div class="tabs" role="tablist" data-group="demo">
       <button role="tab" aria-selected="true" data-tab="demo-ais">I used AI Studio</button>
@@ -205,18 +190,17 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
 
     <div class="panel" id="demo-ais">
       <ol class="steps">
-        <li>Open your app in <a href="https://aistudio.google.com" target="_blank" rel="noopener">AI Studio</a> (Build mode).</li>
+        <li>Open your app in <a href="https://aistudio.google.com" target="_blank" rel="noopener">AI Studio</a></li>
         <li>Click <kbd>Publish</kbd> in the upper-right corner.</li>
         <li>Click <kbd>Get Started</kbd>, then <kbd>Publish App</kbd>.</li>
         <li>Copy the URL it gives you. It ends in <code>.run.app</code> or <code>.ai.studio</code>.</li>
       </ol>
-      <div class="callout info"><span class="ic">i</span><p>Use <strong>Publish</strong>, not <strong>Share</strong>. A Share link opens your app inside AI Studio, not as a public website.</p></div>
     </div>
 
     <div class="panel" id="demo-ag" hidden>
-      <p style="margin-top:0">Deploy with <strong>Firebase Hosting</strong> (simple web apps) or <strong>Cloud Run</strong> (apps with a server). The easiest way: ask your agent to do it, or to walk you through the terminal commands.</p>
-      <div class="copy"><span>Deploy this app so anyone can open it in a browser. Use Firebase Hosting if it's a static site, or Cloud Run if it needs a server. Keep API keys out of the client code. Walk me through each terminal command step by step, and give me the public URL at the end.</span><button data-copy>Copy</button></div>
-      <p style="margin-bottom:0;color:var(--ink-2);font-size:15px">Your link will look like <code>https://your-app.web.app</code> or <code>https://your-app-xxxx.run.app</code>.</p>
+      <p style="margin-top:0">Deploy with Firebase Hosting, Cloud Run, or Vercel. The easiest way: ask your agent to do it, or to walk you through the terminal commands.</p>
+      <div class="copy"><span>Deploy this app so anyone can open it in a browser, using Firebase Hosting, Cloud Run, or Vercel (pick whichever fits this app best). Keep API keys out of the client code. Walk me through each terminal command step by step, and give me the public URL at the end.</span><button data-copy>Copy</button></div>
+      <p style="margin-bottom:0;color:var(--ink-2);font-size:15px">Your link will look like <code>https://your-app.web.app</code>, <code>https://your-app-xxxx.run.app</code> or <code>https://your-app.vercel.app</code>.</p>
     </div>
 
     <div class="panel" id="demo-skip" hidden>
@@ -230,7 +214,7 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
 <!-- 4. SUBMIT -->
 <section id="submit">
   <h2><span class="num">4</span>Fill in the form</h2>
-  <p class="sub">Open the <a href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">jam page</a>, click <kbd>Share what you built →</kbd>, and sign in with Google. The form has five short steps — tap each one below.</p>
+  <p class="sub">Open the <a href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">jam page</a>, click <kbd>Share what you built →</kbd>, and sign in (your Yale account or personal Google account). The form has five short steps, as below.</p>
 
   <details class="formstep" open>
     <summary><span class="k">Step 1</span><span class="t">The build</span><span class="tag req">Required</span><span class="chev">›</span></summary>
@@ -285,8 +269,7 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
   <h2><span class="num">✓</span>Your checklist</h2>
   <p class="sub">Tick these off as you go.</p>
   <div class="card" id="checks">
-    <label class="check"><input type="checkbox" data-k="repo"><span>Created a public GitHub repo and pushed my code</span></label>
-    <label class="check"><input type="checkbox" data-k="keys"><span>Checked there are no API keys in the repo</span></label>
+    <label class="check"><input type="checkbox" data-k="repo"><span>Created a public GitHub repo and copied the link</span></label>
     <label class="check"><input type="checkbox" data-k="shot"><span>Took a screenshot of my app</span></label>
     <label class="check"><input type="checkbox" data-k="demo"><span>Got a live demo URL (or decided to skip it)</span></label>
     <label class="check"><input type="checkbox" data-k="form"><span>Filled in steps 1–5 of the form</span></label>
@@ -332,7 +315,6 @@ footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
       var t = document.querySelector('[data-tab="'+to+'"]'); if (t) t.click();
     });
   }
-  sync('repo-ais','demo-ais'); sync('repo-ag','demo-ag');
 
   // copy
   var toast = document.getElementById('toast'), tt;
