@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share What You Built · AI Build Jam</title>
+<meta name="description" content="How to submit your project from the AI Build Jam (GDG on Campus Yale × Yale Computer Society) to the Coding Jam showcase.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafaf9; --surface:#ffffff; --surface-2:#f3f4f6; --line:#e5e7eb; --ink:#111827; --ink-2:#4b5563; --ink-3:#6b7280;
+  --blue:#1a73e8; --blue-soft:#e8f0fe; --red:#d93025; --red-soft:#fce8e6; --green:#188038; --green-soft:#e6f4ea; --yellow:#f9ab00; --yellow-soft:#fef7e0;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 2px 8px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1115; --surface:#171a20; --surface-2:#1f232b; --line:#2c313a; --ink:#f3f4f6; --ink-2:#c3c8d0; --ink-3:#9aa1ab;
+    --blue:#8ab4f8; --blue-soft:#1c2a40; --red:#f28b82; --red-soft:#3a1f1d; --green:#81c995; --green-soft:#1b3122; --yellow:#fdd663; --yellow-soft:#3a3218;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1115; --surface:#171a20; --surface-2:#1f232b; --line:#2c313a; --ink:#f3f4f6; --ink-2:#c3c8d0; --ink-3:#9aa1ab;
+  --blue:#8ab4f8; --blue-soft:#1c2a40; --red:#f28b82; --red-soft:#3a1f1d; --green:#81c995; --green-soft:#1b3122; --yellow:#fdd663; --yellow-soft:#3a3218;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+code,.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+
+/* header */
+.bar{height:4px;background:linear-gradient(90deg,var(--blue) 0 25%,var(--red) 25% 50%,var(--yellow) 50% 75%,var(--green) 75%)}
+header{padding:48px 0 24px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+h1{font-size:clamp(32px,6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:8px 0 12px}
+.lead{font-size:18px;color:var(--ink-2);margin:0 0 24px;max-width:600px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;background:var(--blue);color:#fff;font-weight:600;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:600}
+:root[data-theme="dark"] .btn{color:#0f1115}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn{color:#0f1115}}
+.btn:hover{filter:brightness(1.05)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+
+/* progress */
+.progress{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.progress .wrap{display:flex;align-items:center;gap:12px;padding-top:10px;padding-bottom:10px;font-size:14px}
+.track{flex:1;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.fill{height:100%;width:0;background:var(--green);transition:width .3s}
+.progress nav{display:flex;gap:4px}
+.progress nav a{font-size:13px;color:var(--ink-2);text-decoration:none;padding:4px 8px;border-radius:6px;white-space:nowrap}
+.progress nav a:hover{background:var(--surface-2)}
+@media (max-width:600px){.progress nav{display:none}}
+
+/* sections */
+section{padding:40px 0 8px}
+h2{font-size:24px;letter-spacing:-.01em;margin:0 0 4px;display:flex;align-items:center;gap:12px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;background:var(--ink);color:var(--bg)}
+.sub{color:var(--ink-2);margin:0 0 20px 44px}
+@media (max-width:600px){.sub{margin-left:0}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){.grid2{grid-template-columns:1fr}}
+.need h3{margin:0 0 4px;font-size:16px}
+.need p{margin:0;color:var(--ink-2);font-size:15px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;vertical-align:middle;margin-left:6px}
+.req{background:var(--red-soft);color:var(--red)}
+.opt{background:var(--surface-2);color:var(--ink-3)}
+.enc{background:var(--green-soft);color:var(--green)}
+
+ol.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 16px 40px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:600;color:var(--ink-2);background:var(--surface)}
+ol.steps>li:not(:last-child)::after{content:"";position:absolute;left:12.5px;top:30px;bottom:4px;width:1.5px;background:var(--line)}
+ol.steps>li:last-child{padding-bottom:0}
+kbd{font:600 13px Inter,system-ui,sans-serif;padding:2px 8px;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;background:var(--surface-2);color:var(--ink);white-space:nowrap}
+
+/* tabs */
+.tabs{display:flex;gap:4px;padding:4px;background:var(--surface-2);border-radius:12px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{flex:1;min-width:120px;border:0;background:transparent;padding:10px 12px;border-radius:9px;font:600 14px Inter,system-ui,sans-serif;color:var(--ink-2);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.panel[hidden]{display:none}
+
+.callout{display:flex;gap:12px;padding:14px 16px;border-radius:12px;font-size:15px;margin-top:16px}
+.callout.warn{background:var(--yellow-soft)}
+.callout.info{background:var(--blue-soft)}
+.callout.ok{background:var(--green-soft)}
+.callout .ic{flex:none;font-weight:700}
+.callout p{margin:0}
+
+/* copy box */
+.copy{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:10px 0 4px;background:var(--surface-2)}
+.copy span{flex:1;padding:10px 12px;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;line-height:1.5;color:var(--ink);overflow-wrap:anywhere}
+.copy button{flex:none;border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px Inter,system-ui,sans-serif;padding:0 14px;cursor:pointer}
+.copy button:hover{background:var(--blue-soft)}
+
+/* form walkthrough */
+.formstep{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-bottom:10px;overflow:hidden}
+.formstep summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 18px}
+.formstep summary::-webkit-details-marker{display:none}
+.formstep summary .k{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);width:54px;flex:none}
+.formstep summary .t{font-weight:600;flex:1}
+.formstep summary .chev{color:var(--ink-3);transition:transform .2s}
+.formstep[open] summary .chev{transform:rotate(90deg)}
+.formstep .body{padding:0 18px 18px 86px;color:var(--ink-2);font-size:15px}
+@media (max-width:600px){.formstep .body{padding-left:18px}}
+.formstep .body p{margin:0 0 10px}
+.field{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:var(--bg)}
+.field .lbl{font-weight:600;color:var(--ink);font-size:14px}
+.field .hint{font-size:13px;color:var(--ink-3)}
+.field.hl{border:2px solid var(--blue);background:var(--blue-soft)}
+.ship{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* checklist */
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
+.check:first-of-type{border-top:0}
+.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--green);flex:none}
+.check.done span{color:var(--ink-3);text-decoration:line-through}
+
+footer{padding:48px 0 64px;color:var(--ink-3);font-size:14px}
+.theme{position:fixed;right:16px;bottom:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:16px;box-shadow:var(--shadow)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:14px;font-weight:500;transition:transform .25s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<div class="progress" aria-label="Your progress">
+  <div class="wrap">
+    <strong id="pcount">0 / 6 done</strong>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <nav>
+      <a href="#prep">Prep</a><a href="#repo">Repo</a><a href="#demo">Demo</a><a href="#submit">Submit</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap">
+<header>
+  <div class="eyebrow">AI Build Jam · GDG on Campus Yale × Yale Computer Society</div>
+  <h1>Share what you built</h1>
+  <p class="lead">Get your project on the Coding Jam showcase in about five minutes. Half-finished is welcome. Tick the boxes as you go — your progress is saved in this browser.</p>
+  <a class="btn" href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">Open the jam page →</a>
+</header>
+
+<!-- 1. PREP -->
+<section id="prep">
+  <h2><span class="num">1</span>Before you start</h2>
+  <p class="sub">Have these two links ready. You'll paste them into the form.</p>
+  <div class="grid2">
+    <div class="card need">
+      <h3>Public repo URL <span class="tag req">Required</span></h3>
+      <p>A public GitHub repo with your code. <a href="#repo">How to get one ↓</a></p>
+    </div>
+    <div class="card need">
+      <h3>Live demo URL <span class="tag opt">Optional</span></h3>
+      <p>A link anyone can click to try your build. <a href="#demo">How to get one ↓</a></p>
+    </div>
+  </div>
+  <p style="margin:12px 0 0;color:var(--ink-2);font-size:15px">You'll also need a <strong>screenshot</strong> of your app (PNG, JPG, WebP or GIF, up to 8 MB) and a Google account to sign in.</p>
+</section>
+
+<!-- 2. REPO -->
+<section id="repo">
+  <h2><span class="num">2</span>Get your GitHub repo URL</h2>
+  <p class="sub">Create a public repo, put your code in it, and copy the link.</p>
+  <div class="card">
+    <ol class="steps">
+      <li>Log in to <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>.</li>
+      <li>Give the repo a name, keep it <strong>Public</strong> (the default settings are fine), and click <kbd>Create repository</kbd>.</li>
+      <li>
+        Put your code in it:
+        <div class="tabs" role="tablist" data-group="repo" style="margin-top:10px">
+          <button role="tab" aria-selected="true" data-tab="repo-ais">AI Studio</button>
+          <button role="tab" aria-selected="false" data-tab="repo-ag">Antigravity</button>
+        </div>
+        <div class="panel" id="repo-ais">
+          In Build mode, use the <strong>GitHub</strong> button in the top right to save your app to the repo. If you don't see it, use <strong>Download</strong> to get a .zip, unzip it, then on your empty repo page click <em>uploading an existing file</em> and drag the files in.
+        </div>
+        <div class="panel" id="repo-ag" hidden>
+          Ask your agent to do it for you. Paste this, with your repo link:
+          <div class="copy"><span>Push this project to my GitHub repo at https://github.com/YOUR-NAME/YOUR-REPO. Make sure .env files and API keys are in .gitignore and not committed.</span><button data-copy>Copy</button></div>
+        </div>
+      </li>
+      <li>Copy the repo link from your browser's address bar. It looks like <code>https://github.com/your-name/your-repo</code>.</li>
+    </ol>
+    <div class="callout warn"><span class="ic">!</span><p>Before you share, check the repo has <strong>no API keys</strong> in it. Submissions go public immediately.</p></div>
+  </div>
+</section>
+
+<!-- 3. DEMO -->
+<section id="demo">
+  <h2><span class="num">3</span>Get a live demo URL <span class="tag enc">Encouraged</span></h2>
+  <p class="sub">Optional, but your showcase card gets a <strong>Live demo</strong> button so people can try your build. Never make one up — use a real link or leave it blank.</p>
+  <div class="card">
+    <div class="tabs" role="tablist" data-group="demo">
+      <button role="tab" aria-selected="true" data-tab="demo-ais">I used AI Studio</button>
+      <button role="tab" aria-selected="false" data-tab="demo-ag">I used Antigravity</button>
+      <button role="tab" aria-selected="false" data-tab="demo-skip">Skip it</button>
+    </div>
+
+    <div class="panel" id="demo-ais">
+      <ol class="steps">
+        <li>Open your app in <a href="https://aistudio.google.com" target="_blank" rel="noopener">AI Studio</a> (Build mode).</li>
+        <li>Click <kbd>Publish</kbd> in the upper-right corner.</li>
+        <li>Click <kbd>Get Started</kbd>, then <kbd>Publish App</kbd>.</li>
+        <li>Copy the URL it gives you. It ends in <code>.run.app</code> or <code>.ai.studio</code>.</li>
+      </ol>
+      <div class="callout info"><span class="ic">i</span><p>Use <strong>Publish</strong>, not <strong>Share</strong>. A Share link opens your app inside AI Studio, not as a public website.</p></div>
+    </div>
+
+    <div class="panel" id="demo-ag" hidden>
+      <p style="margin-top:0">Deploy with <strong>Firebase Hosting</strong> (simple web apps) or <strong>Cloud Run</strong> (apps with a server). The easiest way: ask your agent to do it, or to walk you through the terminal commands.</p>
+      <div class="copy"><span>Deploy this app so anyone can open it in a browser. Use Firebase Hosting if it's a static site, or Cloud Run if it needs a server. Keep API keys out of the client code. Walk me through each terminal command step by step, and give me the public URL at the end.</span><button data-copy>Copy</button></div>
+      <p style="margin-bottom:0;color:var(--ink-2);font-size:15px">Your link will look like <code>https://your-app.web.app</code> or <code>https://your-app-xxxx.run.app</code>.</p>
+    </div>
+
+    <div class="panel" id="demo-skip" hidden>
+      <p style="margin:0">That's fine — leave the field blank. Your repo and screenshot are enough. You can also record a short screen capture (Loom or YouTube) and paste it into <strong>Video / walkthrough URL</strong> instead.</p>
+    </div>
+
+    <div class="callout ok"><span class="ic">✓</span><p>Test it: open your link in a private / incognito window. If it loads without you being signed in, it's good to go.</p></div>
+  </div>
+</section>
+
+<!-- 4. SUBMIT -->
+<section id="submit">
+  <h2><span class="num">4</span>Fill in the form</h2>
+  <p class="sub">Open the <a href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">jam page</a>, click <kbd>Share what you built →</kbd>, and sign in with Google. The form has five short steps — tap each one below.</p>
+
+  <details class="formstep" open>
+    <summary><span class="k">Step 1</span><span class="t">The build</span><span class="tag req">Required</span><span class="chev">›</span></summary>
+    <div class="body">
+      <div class="field"><div class="lbl">Project name *</div><div class="hint">What you called it.</div></div>
+    </div>
+  </details>
+
+  <details class="formstep">
+    <summary><span class="k">Step 2</span><span class="t">Your GDG chapter</span><span class="tag opt">Leave as is</span><span class="chev">›</span></summary>
+    <div class="body">
+      <p>This step is being fixed. For now, leave it as it is: <strong>“Not a chapter”</strong> selected, and <strong>“Yale”</strong> in the text box.</p>
+      <div class="field"><div class="lbl">Is this a GDG chapter?</div><div class="hint">Not a chapter</div></div>
+      <div class="field"><div class="lbl">Text box</div><div class="hint">Yale</div></div>
+    </div>
+  </details>
+
+  <details class="formstep">
+    <summary><span class="k">Step 3</span><span class="t">The links</span><span class="tag req">Required</span><span class="chev">›</span></summary>
+    <div class="body">
+      <div class="field"><div class="lbl">Repo URL *</div><div class="hint">Your GitHub repo link from <a href="#repo">section 2</a>.</div></div>
+      <div class="field"><div class="lbl">Screenshot *</div><div class="hint">One image of your app running. PNG, JPG, WebP or GIF, up to 8 MB.</div></div>
+      <div class="field"><div class="lbl">Video / walkthrough URL <span class="tag opt">Optional</span></div><div class="hint">YouTube, Loom, anything embeddable.</div></div>
+      <div class="field hl"><div class="lbl">Live demo URL <span class="tag enc">Encouraged</span></div><div class="hint">Adds a “Live demo” button to your card. <a href="#demo">How to get one ↑</a></div></div>
+    </div>
+  </details>
+
+  <details class="formstep">
+    <summary><span class="k">Step 4</span><span class="t">The pitch</span><span class="tag opt">Optional</span><span class="chev">›</span></summary>
+    <div class="body">
+      <p>This whole step is optional, but it helps people decide what to click on.</p>
+      <div class="field"><div class="lbl">What does your project do?</div><div class="hint">2–4 sentences: what it is, who it's for, the cool part.</div></div>
+      <div class="field"><div class="lbl">Which Google tech did you use?</div><div class="hint">Tap everything your build uses, e.g. Gemini API, AI Studio, Antigravity.</div></div>
+    </div>
+  </details>
+
+  <details class="formstep">
+    <summary><span class="k">Step 5</span><span class="t">The reflection</span><span class="tag req">Required</span><span class="chev">›</span></summary>
+    <div class="body">
+      <div class="field"><div class="lbl">What surprised you? *</div><div class="hint">1–2 sentences on something you didn't expect. It's the most-read field on the showcase.</div></div>
+    </div>
+  </details>
+
+  <div class="card ship" style="margin-top:16px">
+    <div><strong>Click <kbd>Ship it →</kbd></strong><br><span style="color:var(--ink-2);font-size:15px">Your build goes live on the showcase right away.</span></div>
+    <a class="btn" href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">Go to the jam page →</a>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist">
+  <h2><span class="num">✓</span>Your checklist</h2>
+  <p class="sub">Tick these off as you go.</p>
+  <div class="card" id="checks">
+    <label class="check"><input type="checkbox" data-k="repo"><span>Created a public GitHub repo and pushed my code</span></label>
+    <label class="check"><input type="checkbox" data-k="keys"><span>Checked there are no API keys in the repo</span></label>
+    <label class="check"><input type="checkbox" data-k="shot"><span>Took a screenshot of my app</span></label>
+    <label class="check"><input type="checkbox" data-k="demo"><span>Got a live demo URL (or decided to skip it)</span></label>
+    <label class="check"><input type="checkbox" data-k="form"><span>Filled in steps 1–5 of the form</span></label>
+    <label class="check"><input type="checkbox" data-k="ship"><span>Clicked <strong>Ship it →</strong> and found my card on the jam page</span></label>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  AI Build Jam · Saturday, November 7, 2026 · Tsai CITY, Yale University ·
+  <a href="https://codingjam.dev/jam/81693" target="_blank" rel="noopener">codingjam.dev/jam/81693</a>
+</footer>
+
+<button class="theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<div class="toast" id="toast" role="status">Copied</div>
+
+<script>
+(function(){
+  var store = {
+    get: function(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+    set: function(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  };
+
+  // tabs
+  document.querySelectorAll('.tabs').forEach(function(list){
+    var btns = list.querySelectorAll('button[data-tab]');
+    function pick(id){
+      btns.forEach(function(b){
+        var on = b.dataset.tab === id;
+        b.setAttribute('aria-selected', on);
+        document.getElementById(b.dataset.tab).hidden = !on;
+      });
+      store.set('tab-' + list.dataset.group, id);
+    }
+    btns.forEach(function(b){ b.addEventListener('click', function(){ pick(b.dataset.tab); }); });
+    var saved = store.get('tab-' + list.dataset.group);
+    if (saved && document.getElementById(saved)) pick(saved);
+  });
+
+  // keep repo + demo tool choice in sync (AI Studio / Antigravity)
+  function sync(from, to){
+    document.querySelector('[data-tab="'+from+'"]').addEventListener('click', function(){
+      var t = document.querySelector('[data-tab="'+to+'"]'); if (t) t.click();
+    });
+  }
+  sync('repo-ais','demo-ais'); sync('repo-ag','demo-ag');
+
+  // copy
+  var toast = document.getElementById('toast'), tt;
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var text = b.previousElementSibling.textContent;
+      var done = function(){ toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show'); }, 1400); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function(){});
+    });
+  });
+
+  // checklist + progress
+  var boxes = document.querySelectorAll('#checks input');
+  function update(){
+    var n = 0;
+    boxes.forEach(function(b){ if (b.checked) n++; b.closest('.check').classList.toggle('done', b.checked); });
+    document.getElementById('pcount').textContent = n + ' / ' + boxes.length + ' done';
+    document.getElementById('pfill').style.width = (n / boxes.length * 100) + '%';
+  }
+  boxes.forEach(function(b){
+    b.checked = store.get('chk-' + b.dataset.k) === '1';
+    b.addEventListener('change', function(){ store.set('chk-' + b.dataset.k, b.checked ? '1' : '0'); update(); });
+  });
+  update();
+
+  // theme
+  var root = document.documentElement, saved = store.get('theme');
+  if (saved) root.dataset.theme = saved;
+  document.getElementById('theme').addEventListener('click', function(){
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    store.set('theme', root.dataset.theme);
+  });
+})();
+</script>
+</body>
+</html>
